@@ -21,7 +21,7 @@ public class SemaphoreExample2 {
     public static void main(String[] args) throws Exception {
 
         ExecutorService executorService = Executors.newCachedThreadPool();
-        //20表示允许的并发数
+        //3表示允许的并发数
         final Semaphore semaphore = new Semaphore(3);
 
         for (int i = 0; i < threadCount; i++) {
