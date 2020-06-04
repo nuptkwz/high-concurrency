@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Description
+ * Description(普通多线程代码)
  * 线程隔离例子
  * 在多线程并发场景下，每个线程中的变量都是相互独立的
  * 线程A：设置（变量1）      获取（变量1）

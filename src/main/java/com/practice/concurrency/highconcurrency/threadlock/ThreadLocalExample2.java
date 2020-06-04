@@ -1,10 +1,7 @@
 package com.practice.concurrency.highconcurrency.threadlock;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
- * Description
+ * Description(利用ThreadLocal)
  * 线程隔离例子
  * 在多线程并发场景下，每个线程中的变量都是相互独立的
  * 线程A：设置（变量1）      获取（变量1）
@@ -17,9 +14,19 @@ import lombok.Setter;
  */
 public class ThreadLocalExample2 {
 
-    @Getter
-    @Setter
+    ThreadLocal<String> t1 = new ThreadLocal<>();
+
     private String content;
+
+    private String getContent(){
+        String s = t1.get();
+        return s;
+    }
+
+    private void setContent(String content){
+        //变量content绑定到当前线程
+        t1.set(content);
+    }
 
     public static void main(String[] args) {
         ThreadLocalExample2 example = new ThreadLocalExample2();
