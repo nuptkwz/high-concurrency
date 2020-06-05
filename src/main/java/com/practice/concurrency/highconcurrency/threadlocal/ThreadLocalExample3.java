@@ -1,4 +1,4 @@
-package com.practice.concurrency.highconcurrency.threadlock;
+package com.practice.concurrency.highconcurrency.threadlocal;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,21 +12,23 @@ import lombok.Setter;
  * Date 2020/6/3 22:03
  * Created by kwz
  */
-public class ThreadLocalExample1 {
+public class ThreadLocalExample3 {
 
     @Getter
     @Setter
     private String content;
 
     public static void main(String[] args) {
-        ThreadLocalExample1 example = new ThreadLocalExample1();
+        ThreadLocalExample3 example = new ThreadLocalExample3();
         for (int i = 0; i < 5; i++) {
             Thread thread = new Thread(
                     () -> {
                         //每个线程存一个变量，过一会儿取这个变量
-                        example.setContent(Thread.currentThread().getName() + "的数据");
-                        System.out.println("----------------------------------------");
-                        System.out.println(Thread.currentThread().getName() + "---->" + example.getContent());
+                        synchronized (ThreadLocalExample3.class) {
+                            example.setContent(Thread.currentThread().getName() + "的数据");
+                            System.out.println("----------------------------------------");
+                            System.out.println(Thread.currentThread().getName() + "---->" + example.getContent());
+                        }
                     }
             );
             //0->4一共有5个线程
