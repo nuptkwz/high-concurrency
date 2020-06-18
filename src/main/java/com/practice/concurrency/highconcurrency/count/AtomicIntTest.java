@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Slf4j
 @ThreadSafe
-public class AtomicTest {
+public class AtomicIntTest {
     //请求总数
     public static int clientTotal = 5000;
     //同时并发执行的线程数
@@ -25,6 +25,7 @@ public class AtomicTest {
 
     private static void add() {
         //一个是先增加再拿返回值，另一个是先拿到返回值再增加
+        //它里面使用了一个Unsafe的类，调用了compareAndSwapInt
         count.incrementAndGet();
         //count.getAndIncrement();
     }
