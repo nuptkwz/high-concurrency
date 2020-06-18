@@ -1,4 +1,4 @@
-package com.practice.concurrency.highconcurrency.count;
+package com.practice.concurrency.highconcurrency.count.atomic;
 
 import com.practice.concurrency.highconcurrency.annoation.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
@@ -8,7 +8,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Description
@@ -17,12 +16,12 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @Slf4j
 @ThreadSafe
-public class AtomicLongTest {
+public class AtomicIntDemo {
     //请求总数
     public static int clientTotal = 5000;
     //同时并发执行的线程数
     public static int threadTotal = 200;
-    public static AtomicLong count = new AtomicLong(0);
+    public static AtomicInteger count = new AtomicInteger(0);
 
     private static void add() {
         //一个是先增加再拿返回值，另一个是先拿到返回值再增加
