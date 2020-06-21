@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -12,13 +14,16 @@ import java.util.concurrent.Semaphore;
 
 /**
  * Description
- * Date 2020/6/21 21:19
- * 使用SimpleDateFormat用线程封闭的方式，定义局部变量的形式就不会线程安全问题了，
+ * ArrayList、HashSet、HashMap都不是线程安全的
+ * Date 2020/6/21 21:42
  * Created by kwz
  */
 @Slf4j
 @NotThreadSafe
-public class DateFormatDemo1 {
+public class ArrayListDemo {
+
+    private static List<Integer> list = new ArrayList<>();
+
 
     //请求总数
     public static int clientTotal = 5000;
@@ -30,11 +35,12 @@ public class DateFormatDemo1 {
         final Semaphore semaphore = new Semaphore(threadTotal);
         final CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
         for (int i = 0; i < clientTotal; i++) {
+            final int count = i;
             executorService.execute(
                     () -> {
                         try {
                             semaphore.acquire();
-                            update();
+                            update(count);
                             semaphore.release();
                         } catch (InterruptedException e) {
                             log.error("exception", e);
@@ -46,15 +52,10 @@ public class DateFormatDemo1 {
         countDownLatch.await();
         //线程池用完之后关闭它
         executorService.shutdownNow();
+        log.info("size:{}", list.size());
     }
 
-    private static void update() {
-        try {
-            //每次声明一个新的变量来使用
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-            simpleDateFormat.parse("20200621");
-        } catch (ParseException e) {
-            log.error("parse exception", e);
-        }
+    private static void update(int i) {
+        list.add(i);
     }
 }
