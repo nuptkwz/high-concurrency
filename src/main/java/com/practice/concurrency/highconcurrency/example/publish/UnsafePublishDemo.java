@@ -1,4 +1,4 @@
-package com.practice.concurrency.highconcurrency.count.publish;
+package com.practice.concurrency.highconcurrency.example.publish;
 
 import com.practice.concurrency.highconcurrency.annoation.NotThreadSafe;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,6 @@
-package com.practice.concurrency.highconcurrency.count.singleton;
+package com.practice.concurrency.highconcurrency.example.singleton;
 
 import com.practice.concurrency.highconcurrency.annoation.NotRecommend;
-import com.practice.concurrency.highconcurrency.annoation.NotThreadSafe;
 import com.practice.concurrency.highconcurrency.annoation.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 

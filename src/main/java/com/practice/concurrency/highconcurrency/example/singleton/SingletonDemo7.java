@@ -1,4 +1,4 @@
-package com.practice.concurrency.highconcurrency.count.singleton;
+package com.practice.concurrency.highconcurrency.example.singleton;
 
 import com.practice.concurrency.highconcurrency.annoation.Recommend;
 import com.practice.concurrency.highconcurrency.annoation.ThreadSafe;

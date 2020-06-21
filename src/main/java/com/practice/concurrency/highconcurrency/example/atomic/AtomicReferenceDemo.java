@@ -1,4 +1,4 @@
-package com.practice.concurrency.highconcurrency.count.atomic;
+package com.practice.concurrency.highconcurrency.example.atomic;
 
 import com.practice.concurrency.highconcurrency.annoation.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;

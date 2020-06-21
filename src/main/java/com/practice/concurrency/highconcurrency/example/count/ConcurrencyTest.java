@@ -1,13 +1,12 @@
-package com.practice.concurrency.highconcurrency.count.atomic;
+package com.practice.concurrency.highconcurrency.example.count;
 
-import com.practice.concurrency.highconcurrency.annoation.ThreadSafe;
+import com.practice.concurrency.highconcurrency.annoation.NotThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Description
@@ -15,19 +14,16 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by kwz
  */
 @Slf4j
-@ThreadSafe
-public class AtomicIntDemo {
+@NotThreadSafe
+public class ConcurrencyTest {
     //请求总数
     public static int clientTotal = 5000;
     //同时并发执行的线程数
-    public static int threadTotal = 200;
-    public static AtomicInteger count = new AtomicInteger(0);
+    public static int threadTotal = 50;
+    public static int count = 0;
 
     private static void add() {
-        //一个是先增加再拿返回值，另一个是先拿到返回值再增加
-        //它里面使用了一个Unsafe的类，调用了compareAndSwapInt
-        count.incrementAndGet();
-        //count.getAndIncrement();
+        count++;
     }
 
     public static void main(String[] args) throws Exception {
@@ -51,6 +47,6 @@ public class AtomicIntDemo {
         countDownLatch.await();
         //线程池用完之后关闭它
         executorService.shutdownNow();
-        log.info("count:{}", count.get());
+        log.info("count:{}", count);
     }
 }
