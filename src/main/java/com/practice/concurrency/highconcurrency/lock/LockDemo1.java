@@ -1,13 +1,9 @@
 package com.practice.concurrency.highconcurrency.lock;
 
-import sun.rmi.runtime.Log;
-
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**

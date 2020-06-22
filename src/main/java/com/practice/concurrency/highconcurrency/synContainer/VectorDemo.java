@@ -22,7 +22,7 @@ import java.util.concurrent.Semaphore;
 @ThreadSafe
 public class VectorDemo {
 
-    private static Vector<Integer> list = new Vector<>();
+    private static List<Integer> list = new Vector<>();
 
     //请求总数
     public static int clientTotal = 5000;
