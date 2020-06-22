@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Description
+ * CountDownLatch:通过一个计数来保证线程是否一直需要阻塞
  * Date 2020/5/4 10:17
  * Created by kwz
  */

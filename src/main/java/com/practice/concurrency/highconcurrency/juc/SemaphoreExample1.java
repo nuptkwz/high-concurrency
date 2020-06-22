@@ -9,6 +9,7 @@ import java.util.concurrent.Semaphore;
 /**
  * Description
  * 一个许可的情况
+ * 控制同一时间并发线程的数目
  * 控制并发执行的数量（20），每次20个线程执行，一块一块的执行
  * Date 2020/5/4 10:17
  * Created by kwz
