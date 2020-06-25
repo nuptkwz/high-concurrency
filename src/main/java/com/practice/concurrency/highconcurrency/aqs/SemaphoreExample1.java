@@ -11,6 +11,8 @@ import java.util.concurrent.Semaphore;
  * 一个许可的情况
  * 控制同一时间并发线程的数目
  * 控制并发执行的数量（20），每次20个线程执行，一块一块的执行
+ *
+ * 控制某个资源可以被同时访问的个数
  * Date 2020/5/4 10:17
  * Created by kwz
  */
@@ -22,7 +24,7 @@ public class SemaphoreExample1 {
     public static void main(String[] args) throws Exception {
 
         ExecutorService executorService = Executors.newCachedThreadPool();
-        //20表示允许的并发数
+        //20表示允许的并发数，如果改为1那么就和单线程比较类似了
         final Semaphore semaphore = new Semaphore(20);
 
         for (int i = 0; i < threadCount; i++) {
@@ -30,10 +32,10 @@ public class SemaphoreExample1 {
             executorService.execute(
                     () -> {
                         try {
-                            //拿到许可
+                            //拿到许可，如果没有就在这儿等待
                             semaphore.acquire();
                             doSomething(threadNum);
-                            //释放许可
+                            //释放许可，在操作完成之后释放一个许可出来
                             semaphore.release();
                         } catch (Exception e) {
                             e.printStackTrace();

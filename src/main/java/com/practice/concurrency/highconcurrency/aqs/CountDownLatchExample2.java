@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Description
+ * 指定时间内完成
  * <p>
  * Date 2020/5/4 10:17
  * Created by kwz
