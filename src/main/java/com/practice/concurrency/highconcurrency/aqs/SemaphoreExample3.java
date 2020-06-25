@@ -1,11 +1,10 @@
-package com.practice.concurrency.highconcurrency.juc;
+package com.practice.concurrency.highconcurrency.aqs;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Description
@@ -15,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * Created by kwz
  */
 @Slf4j
-public class SemaphoreExample4 {
+public class SemaphoreExample3 {
 
     private static int threadCount = 200;
 
@@ -29,7 +28,10 @@ public class SemaphoreExample4 {
             executorService.execute(
                     () -> {
                         try {
-                            if (semaphore.tryAcquire(5000, TimeUnit.MILLISECONDS)) {
+                            //当前允许的并发数是3，超过3个的话，我就会丢弃
+                            //尝试获取许可，如果当前可以拿到许可，你就去做，如果拿不到许可，
+                            // 你想丢弃它的时候，直接丢弃
+                            if (semaphore.tryAcquire()) {
                                 doSomething(threadNum);
                                 //释放许可
                                 semaphore.release();

@@ -1,4 +1,4 @@
-package com.practice.concurrency.highconcurrency.juc;
+package com.practice.concurrency.highconcurrency.aqs;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,19 +8,20 @@ import java.util.concurrent.Semaphore;
 
 /**
  * Description
- * semaphore.tryAcquire：尝试获取许可
+ * 多个许可的情况（和单线程有点类似）
  * 控制并发执行的数量（20），每次20个线程执行，一块一块的执行
  * Date 2020/5/4 10:17
  * Created by kwz
  */
 @Slf4j
-public class SemaphoreExample3 {
+public class SemaphoreExample2 {
 
     private static int threadCount = 200;
 
     public static void main(String[] args) throws Exception {
 
         ExecutorService executorService = Executors.newCachedThreadPool();
+        //3表示允许的并发数
         final Semaphore semaphore = new Semaphore(3);
 
         for (int i = 0; i < threadCount; i++) {
@@ -28,14 +29,11 @@ public class SemaphoreExample3 {
             executorService.execute(
                     () -> {
                         try {
-                            //当前允许的并发数是3，超过3个的话，我就会丢弃
-                            //尝试获取许可，如果当前可以拿到许可，你就去做，如果拿不到许可，
-                            // 你想丢弃它的时候，直接丢弃
-                            if (semaphore.tryAcquire()) {
-                                doSomething(threadNum);
-                                //释放许可
-                                semaphore.release();
-                            }
+                            //获取多个许可
+                            semaphore.acquire(3);
+                            doSomething(threadNum);
+                            //释放多个许可
+                            semaphore.release(3);
                         } catch (Exception e) {
                             e.printStackTrace();
                             log.error("exception", e);
