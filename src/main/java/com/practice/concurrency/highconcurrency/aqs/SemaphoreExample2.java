@@ -22,7 +22,7 @@ public class SemaphoreExample2 {
 
         ExecutorService executorService = Executors.newCachedThreadPool();
         //3表示允许的并发数
-        final Semaphore semaphore = new Semaphore(3);
+        final Semaphore semaphore = new Semaphore(9);
 
         for (int i = 0; i < threadCount; i++) {
             final int threadNum = i;
