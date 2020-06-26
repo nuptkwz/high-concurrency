@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Description
- * 在没有任何读写锁的情况下才能取得写入的锁
+ * 在没有任何读写锁的情况下才能取得写入的锁(它实现的是悲观读取)
  * Date 2020/5/4 11:52
  * Created by kwz
  */
