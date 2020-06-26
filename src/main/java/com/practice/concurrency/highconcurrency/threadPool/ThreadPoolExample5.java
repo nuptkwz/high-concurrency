@@ -2,6 +2,9 @@ package com.practice.concurrency.highconcurrency.threadPool;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -29,5 +32,13 @@ public class ThreadPoolExample5 {
 //        executorService.scheduleAtFixedRate(1,3,TimeUnit.SECONDS);
 //        executorService.scheduleWithFixedDelay()
         executorService.shutdown();
+
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                log.warn("timer run");
+//            }
+//        },new Date(),5*1000);
     }
 }
