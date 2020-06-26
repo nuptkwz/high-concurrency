@@ -8,10 +8,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Description
+ * 在没有任何读写锁的情况下才能取得写入的锁
  * Date 2020/5/4 11:52
  * Created by kwz
  */
-public class LockDemo1 {
+public class LockExample2 {
 
     private final Map<String, Data> map = new TreeMap<>();
     private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();

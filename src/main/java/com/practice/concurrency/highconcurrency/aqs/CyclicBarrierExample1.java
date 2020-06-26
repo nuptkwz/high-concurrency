@@ -9,13 +9,14 @@ import java.util.concurrent.Executors;
 /**
  * Description
  * Date 2020/5/10 16:06
+ * 它允许一组线程相互等待，直到到达某个工作屏障点
  * Created by kwz
  */
 @Slf4j
 public class CyclicBarrierExample1 {
 
     /**
-     * 给定一个值告诉当前线程要有多少个值来等待
+     * 给定一个值告诉当前线程要有多少个值来同步等待
      */
     private static CyclicBarrier barrier = new CyclicBarrier(5);
 
