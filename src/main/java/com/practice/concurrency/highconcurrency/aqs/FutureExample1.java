@@ -19,7 +19,7 @@ public class FutureExample1 {
 
         @Override
         public String call() throws Exception {
-            log.info("do something...");
+            log.info("do something in callable...");
             Thread.sleep(5000);
             return "finished";
         }
