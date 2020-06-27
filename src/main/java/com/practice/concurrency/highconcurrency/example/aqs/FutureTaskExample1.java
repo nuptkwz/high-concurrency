@@ -1,4 +1,4 @@
-package com.practice.concurrency.highconcurrency.aqs;
+package com.practice.concurrency.highconcurrency.example.aqs;
 
 import lombok.extern.slf4j.Slf4j;
 

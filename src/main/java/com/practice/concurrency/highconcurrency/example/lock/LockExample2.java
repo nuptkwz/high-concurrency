@@ -1,4 +1,4 @@
-package com.practice.concurrency.highconcurrency.lock;
+package com.practice.concurrency.highconcurrency.example.lock;
 
 import java.util.Map;
 import java.util.Set;

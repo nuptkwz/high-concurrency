@@ -1,31 +1,39 @@
-package com.practice.concurrency.highconcurrency.commonUnsafe;
+package com.practice.concurrency.highconcurrency.example.lock;
 
-import com.practice.concurrency.highconcurrency.annoation.NotThreadSafe;
+import com.practice.concurrency.highconcurrency.annoation.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Description
- * Date 2020/6/21 21:19
- * 使用SimpleDateFormat多线程并发执行的时候会出现很多个异常
+ * Date 2020/6/18 22:45
  * Created by kwz
  */
 @Slf4j
-@NotThreadSafe
-public class DateFormatDemo {
-
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-
+@ThreadSafe
+public class LockExample1 {
     //请求总数
     public static int clientTotal = 5000;
     //同时并发执行的线程数
     public static int threadTotal = 50;
+    public static int count = 0;
+
+    private final static Lock lock = new ReentrantLock();
+
+    private static void add() {
+        lock.lock();
+        try {
+            count++;
+        } finally {
+            lock.unlock();
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -36,7 +44,7 @@ public class DateFormatDemo {
                     () -> {
                         try {
                             semaphore.acquire();
-                            update();
+                            add();
                             semaphore.release();
                         } catch (InterruptedException e) {
                             log.error("exception", e);
@@ -48,13 +56,6 @@ public class DateFormatDemo {
         countDownLatch.await();
         //线程池用完之后关闭它
         executorService.shutdownNow();
-    }
-
-    private static void update() {
-        try {
-            simpleDateFormat.parse("20200621");
-        } catch (ParseException e) {
-            log.error("parse exception", e);
-        }
+        log.info("count:{}", count);
     }
 }
