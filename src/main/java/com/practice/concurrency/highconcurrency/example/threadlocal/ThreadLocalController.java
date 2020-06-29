@@ -1,4 +1,4 @@
-package com.practice.concurrency.highconcurrency.threadlocal;
+package com.practice.concurrency.highconcurrency.example.threadlocal;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

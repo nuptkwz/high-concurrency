@@ -1,6 +1,4 @@
-package com.practice.concurrency.highconcurrency.threadlocal;
-
-import javax.servlet.http.HttpServletRequest;
+package com.practice.concurrency.highconcurrency.example.threadlocal;
 
 /**
  * 处理高并发的对象
