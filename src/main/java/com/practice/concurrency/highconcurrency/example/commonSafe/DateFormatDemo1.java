@@ -1,6 +1,5 @@
-package com.practice.concurrency.highconcurrency.commonSafe;
+package com.practice.concurrency.highconcurrency.example.commonSafe;
 
-import com.practice.concurrency.highconcurrency.annoation.NotThreadSafe;
 import com.practice.concurrency.highconcurrency.annoation.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
