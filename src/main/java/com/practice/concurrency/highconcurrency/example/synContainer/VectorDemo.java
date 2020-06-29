@@ -1,10 +1,8 @@
-package com.practice.concurrency.highconcurrency.synContainer;
+package com.practice.concurrency.highconcurrency.example.synContainer;
 
-import com.practice.concurrency.highconcurrency.annoation.NotThreadSafe;
 import com.practice.concurrency.highconcurrency.annoation.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
