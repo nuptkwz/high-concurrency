@@ -1,5 +1,6 @@
 package com.practice.concurrency.highconcurrency.redis;
 
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Configuration;
 
 
@@ -13,4 +14,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedisConfig {
 
+    public JedisPool jedisPool(){
+
+        return null;
+    }
 }
