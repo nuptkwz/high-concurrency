@@ -1,7 +1,8 @@
 package com.practice.concurrency.highconcurrency.mq.kafka;
 
 import lombok.extern.slf4j.Slf4j;
-import org.omg.CORBA.PUBLIC_MEMBER;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class KafkaReceiver {
-
 
     @KafkaListener(topics = {TopicConstants.TEST})
     public void receive(ConsumerRecord<?, ?> record) {
