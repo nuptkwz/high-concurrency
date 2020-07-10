@@ -5,7 +5,7 @@ package com.practice.concurrency.highconcurrency.mq.rabbitmq;
  * Date 2020/7/8 21:44
  * Created by kwz
  */
-public class QueueConstants {
+public interface QueueConstants {
     String TEST = "test";
 
     String MESSAGE = "message";
