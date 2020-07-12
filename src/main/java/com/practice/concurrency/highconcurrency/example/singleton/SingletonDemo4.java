@@ -54,5 +54,4 @@ public class SingletonDemo4 {
         return instance;
     }
 
-
 }

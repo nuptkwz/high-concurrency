@@ -28,5 +28,4 @@ public class SingletonDemo2 {
     public static SingletonDemo2 getInstance() {
         return instance;
     }
-
 }

@@ -34,5 +34,4 @@ public class SingletonDemo3 {
         return instance;
     }
 
-
 }
