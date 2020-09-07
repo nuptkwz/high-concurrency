@@ -27,8 +27,7 @@ public class ConditionExample1 {
             }
             log.info("get signal"); //4
             reentrantLock.unlock();
-        }
-        ).start();
+        }).start();
 
         new Thread(() -> {
             reentrantLock.lock();
