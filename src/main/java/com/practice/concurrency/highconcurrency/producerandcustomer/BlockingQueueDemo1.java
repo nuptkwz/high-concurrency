@@ -2,7 +2,6 @@ package com.practice.concurrency.highconcurrency.producerandcustomer;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -16,11 +15,13 @@ import java.util.concurrent.BlockingQueue;
 public class BlockingQueueDemo1 {
 
     public static void main(String[] args) {
+        //创建ArrayBlockingQueue类型的BlockingQueue
         BlockingQueue<Object> arrayQueue = new ArrayBlockingQueue<>(10);
 
         Runnable producer = () -> {
-            while (true){
+            while (true) {
                 try {
+                    //生产者往队列中存放数据
                     log.info("execute arrayQueue put......");
                     arrayQueue.put(new Object());
                 } catch (InterruptedException e) {
@@ -29,13 +30,15 @@ public class BlockingQueueDemo1 {
             }
         };
 
+        //启动两个生产者线程
         new Thread(producer).start();
         new Thread(producer).start();
 
-        Runnable customer = ()->{
-            while (true){
+        Runnable customer = () -> {
+            while (true) {
                 try {
                     log.info("execute arrayQueue take......");
+                    //消费者从队列中取出数据
                     arrayQueue.take();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -43,6 +46,7 @@ public class BlockingQueueDemo1 {
             }
         };
 
+        //启动两个消费者线程
         new Thread(customer).start();
         new Thread(customer).start();
     }
