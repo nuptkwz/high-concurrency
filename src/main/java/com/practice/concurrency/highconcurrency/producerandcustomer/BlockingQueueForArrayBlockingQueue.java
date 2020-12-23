@@ -12,7 +12,7 @@ import java.util.concurrent.BlockingQueue;
  * Created by kwz
  */
 @Slf4j
-public class BlockingQueueDemo1 {
+public class BlockingQueueForArrayBlockingQueue {
 
     public static void main(String[] args) {
         //创建ArrayBlockingQueue类型的BlockingQueue
