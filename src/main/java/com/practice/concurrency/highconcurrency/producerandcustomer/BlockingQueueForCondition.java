@@ -17,14 +17,14 @@ import java.util.concurrent.locks.ReentrantLock;
 public class BlockingQueueForCondition {
 
     private Queue queue;
-    private int max = 16;
+    private int maxSize = 16;
     private ReentrantLock lock = new ReentrantLock();
     //在lock锁的基础上创建两个条件，notEmptyCondition：队列没有空的条件，notFullCondition队列没有满的条件
     private Condition notEmptyCondition = lock.newCondition();
     private Condition notFullCondition = lock.newCondition();
 
     public BlockingQueueForCondition(int size) {
-        this.max = size;
+        this.maxSize = size;
         queue = new LinkedList();
     }
 
@@ -33,7 +33,7 @@ public class BlockingQueueForCondition {
         lock.lock();
         try {
             //检测队列是否已经满了
-            while (queue.size() == max) {
+            while (queue.size() == maxSize) {
                 //此时队列已经满了，阻塞生产者线程并且释放lock锁
                 notFullCondition.await();
             }
