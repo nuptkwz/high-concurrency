@@ -12,8 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 public class BlockingQueueTest {
 
     public static void main(String[] args) {
-        BlockingQueueForWaitNotify blockingQueueForWaitNotify = new BlockingQueueForWaitNotify(20);
-        new Thread();
+        BlockingQueueForWaitNotify blockingQueue = new BlockingQueueForWaitNotify(20);
+        Producer producer = new Producer(blockingQueue);
+        Consumer consumer = new Consumer(blockingQueue);
+        new Thread(producer).start();
+        new Thread(consumer).start();
     }
 }
 
