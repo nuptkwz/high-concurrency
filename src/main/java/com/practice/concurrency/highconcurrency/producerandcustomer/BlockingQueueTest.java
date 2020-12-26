@@ -1,6 +1,5 @@
 package com.practice.concurrency.highconcurrency.producerandcustomer;
 
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 /**

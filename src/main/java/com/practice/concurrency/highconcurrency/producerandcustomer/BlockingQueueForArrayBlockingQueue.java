@@ -2,6 +2,7 @@ package com.practice.concurrency.highconcurrency.producerandcustomer;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -16,14 +17,14 @@ public class BlockingQueueForArrayBlockingQueue {
 
     public static void main(String[] args) {
         //创建ArrayBlockingQueue类型的BlockingQueue
-        BlockingQueue<Object> arrayQueue = new ArrayBlockingQueue<>(10);
+        BlockingQueue<Integer> arrayQueue = new ArrayBlockingQueue<>(10);
 
         Runnable producer = () -> {
             while (true) {
                 try {
                     //生产者往队列中存放数据
                     log.info("execute arrayQueue put......");
-                    arrayQueue.put(new Object());
+                    arrayQueue.put(new Random().nextInt());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

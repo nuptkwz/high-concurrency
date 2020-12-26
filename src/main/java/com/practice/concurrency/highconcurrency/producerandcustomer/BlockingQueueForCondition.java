@@ -28,7 +28,7 @@ public class BlockingQueueForCondition {
         queue = new LinkedList();
     }
 
-    public void put(Object object) throws InterruptedException {
+    public void put(Integer item) throws InterruptedException {
         //多线程场景需要一定的同步措施来保证线程安全，因此需要加锁操作
         lock.lock();
         try {
@@ -39,7 +39,7 @@ public class BlockingQueueForCondition {
             }
             //如果没有满则往队列里面存放数据，并且调用notEmptyCondition.signalAll()通知正在等待的消费者，
             //并且唤醒等待的消费者
-            queue.add(object);
+            queue.add(item);
             notEmptyCondition.signalAll();
         } finally {
             //最后释放锁,否则可能会产生无法释放锁的情况
@@ -58,13 +58,6 @@ public class BlockingQueueForCondition {
             return item;
         } finally {
             lock.unlock();
-        }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        BlockingQueueForCondition block = new BlockingQueueForCondition(20);
-        for (int i = 0; i < 100; i++) {
-            block.put(new Object());
         }
     }
 }
