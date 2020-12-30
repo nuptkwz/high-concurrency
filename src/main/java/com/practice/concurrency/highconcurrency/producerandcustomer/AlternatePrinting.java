@@ -28,6 +28,7 @@ public class AlternatePrinting {
                     }
                 }
                 log.info("print odd number:{}",index);
+                isPrintOdd = true;
                 index.incrementAndGet();
                 object.notifyAll();
             }
@@ -35,7 +36,7 @@ public class AlternatePrinting {
 
         new Thread(() -> {
             for (int i = 0; i < 50; i++) {
-                if (!isPrintOdd){
+                if (isPrintOdd){
                     try {
                         object.wait();
                     } catch (InterruptedException e) {
@@ -43,6 +44,7 @@ public class AlternatePrinting {
                     }
                 }
                 log.info("print event number:{}",index);
+                isPrintOdd = false;
                 index.incrementAndGet();
                 object.notifyAll();
             }
