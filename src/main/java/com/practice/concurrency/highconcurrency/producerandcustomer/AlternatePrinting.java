@@ -34,6 +34,7 @@ public class AlternatePrinting {
             }
         }).start();
 
+
         new Thread(() -> {
             for (int i = 0; i < 50; i++) {
                 if (isPrintOdd){
