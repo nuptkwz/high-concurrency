@@ -16,38 +16,44 @@ public class AlternatePrinting {
     private static AtomicInteger index = new AtomicInteger(1);
     private static volatile boolean isPrintOdd = true;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         new Thread(() -> {
             for (int i = 0; i < 50; i++) {
-                if (!isPrintOdd){
-                    try {
-                        object.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                synchronized (object) {
+                    if (!isPrintOdd) {
+                        try {
+                            object.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                    log.info("print even number:{}", index);
+                    isPrintOdd = false;
+                    index.incrementAndGet();
+                    object.notifyAll();
                 }
-                log.info("print odd number:{}",index);
-                isPrintOdd = true;
-                index.incrementAndGet();
-                object.notifyAll();
+
             }
         }).start();
 
 
         new Thread(() -> {
             for (int i = 0; i < 50; i++) {
-                if (isPrintOdd){
-                    try {
-                        object.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                synchronized (object) {
+                    if (isPrintOdd) {
+                        try {
+                            object.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                    log.info("print odd number:{}", index);
+                    isPrintOdd = true;
+                    index.incrementAndGet();
+                    object.notifyAll();
                 }
-                log.info("print event number:{}",index);
-                isPrintOdd = false;
-                index.incrementAndGet();
-                object.notifyAll();
+
             }
         }).start();
     }
