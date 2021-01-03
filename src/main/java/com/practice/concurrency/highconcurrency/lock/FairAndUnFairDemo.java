@@ -1,15 +1,13 @@
 package com.practice.concurrency.highconcurrency.lock;
 
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Date;
-import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Description 公平锁和非公平锁的演示
+ * 该例子来自于《Java并发编程实战手册》
  * Date 2021/1/3 18:06
  * Created by kwz
  */
