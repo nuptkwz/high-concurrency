@@ -18,10 +18,11 @@ public class FairAndUnFairDemo {
     public static void main(String[] args) {
         PrintQueue printQueue = new PrintQueue();
         Thread[] threads = new Thread[THRESHOLD_NUMBERS];
+        //建立10个线程
         for (int i = 0; i < THRESHOLD_NUMBERS; i++) {
             threads[i] = new Thread(new Job(printQueue), "thread" + i);
         }
-
+        //10个线程启动起来，每次间隔100ms
         for (int i = 0; i < THRESHOLD_NUMBERS; i++) {
             threads[i].start();
             try {
@@ -54,13 +55,13 @@ class Job implements Runnable {
 @Slf4j
 class PrintQueue {
     //默认是非公平锁
-    private final Lock queueLock = new ReentrantLock(true);
+    private final Lock queueLock = new ReentrantLock();
 
     public void printJob(Object document) {
         queueLock.lock();
         try {
             long duration = (long) (Math.random() * 10000);
-            log.info("{}:printQueue:,printing a job during {} second/n",
+            log.info("{}:printQueue:,printing a job during {} second",
                     Thread.currentThread().getName(), (duration / 1000));
             Thread.sleep(duration);
         } catch (InterruptedException e) {
@@ -73,7 +74,7 @@ class PrintQueue {
         queueLock.lock();
         try {
             long duration = (long) (Math.random() * 10000);
-            log.info("{}:printQueue:,printing a job during {} second/n",
+            log.info("{}:printQueue:,printing a job during {} second",
                     Thread.currentThread().getName(), (duration / 1000));
             Thread.sleep(duration);
         } catch (InterruptedException e) {
