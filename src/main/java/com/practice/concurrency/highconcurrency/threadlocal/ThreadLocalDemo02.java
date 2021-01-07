@@ -31,6 +31,7 @@ public class ThreadLocalDemo02 {
     }
 
     public String date(int seconds) {
+        //如果simpleDateFormat被static修饰，是类共享的，那么及时用threadLocal也是无法解决线程安全问题
         Date date = new Date(1000 * seconds);
         SimpleDateFormat simpleDateFormat = ThreadSafeFormatter.dateFormatThreadLocal.get();
         return simpleDateFormat.format(date);
