@@ -10,10 +10,12 @@ import java.util.concurrent.*;
  * Created by kwz
  */
 @Slf4j
-public class CompletableFutureDemo2 {
+public class CompletableFutureDemo0 {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        testComplete();
+//        testComplete();
+        Future<String> future = testException();
+        future.get();
     }
 
     private static void testComplete() throws InterruptedException, ExecutionException {
@@ -27,5 +29,27 @@ public class CompletableFutureDemo2 {
             }
         });
         System.out.println(future.get());
+    }
+
+    private static Future<String> testException() {
+        CompletableFuture<String> future = new CompletableFuture<>();
+        new Thread(
+                () -> {
+                    try {
+                        String tips = getTips(-2);
+                        future.complete(tips);
+                    } catch (Exception e) {
+                        future.completeExceptionally(e);
+                    }
+                }
+        ).start();
+        return future;
+    }
+
+    private static String getTips(int num) throws Exception {
+        if (num < 0) {
+            throw new Exception();
+        }
+        return "success";
     }
 }
