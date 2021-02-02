@@ -13,7 +13,9 @@ import java.util.concurrent.*;
 public class CompletableFutureDemo0 {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-//        testComplete();
+        //complete
+        testComplete();
+        //exception
         Future<String> future = testException();
         future.get();
     }
